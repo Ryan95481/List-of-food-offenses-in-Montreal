@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog-Z Bootstrap 5.0 HTML Template</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/templatemo-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Connection</a>
+    </nav>
+
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="/static/img/hero.jpg"></div>
+
+    {% if error %}
+    <p style="color:#F00">{{ error }}</p>
+    {% endif %}
+
+    <form class="tm-search-form" method="post">
+        <div class="form-group">
+            <input class="form-control tm-search-input" placeholder="Établissement" id="champ_etablissement" type="text" name="champ_etablissement" aria-label="Établissement">
+        </div>
+        <div class="form-group">
+            <input class="form-control tm-search-input" placeholder="Adresse" id="champ_adresse" type="text" name="champ_adresse" aria-label="Adresse">
+        </div> 
+        <div class="form-group">
+            <input class="form-control tm-search-input" placeholder="Ville" id="champ_ville" type="text" name="champ_ville" aria-label="Ville">
+        </div>
+        <div class="form-group">
+            <input class="form-control tm-search-input" id="champ_date_visite" type="date" name="champ_date_visite" aria-label="Date de visite">
+        </div>
+        <div class="form-group">
+            <input class="form-control tm-search-input" placeholder="Nom" id="champ_nom" type="text" name="champ_nom" aria-label="Nom">
+        </div>
+        <div class="form-group">
+            <input class="form-control tm-search-input" placeholder="Prénom" id="champ_prenom" type="text" name="champ_prenom" aria-label="Prénom">
+        </div>
+        <div class="form-group">
+            <input class="form-control tm-search-input" placeholder="Description" id="champ_description" type="text" name="champ_description" aria-label="Description">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="btn_plainte">Créer</button>
+        </div>
+    </form>
+    
+
+    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+        <div class="container-fluid tm-container-small">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">
+                    Copyright 2020 Catalog-Z Company. All rights reserved.
+                </div>
+                <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
+                    Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored" target="_parent">TemplateMo</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/script-date.js"></script>
+    <script src="/static/js/script-plainte.js"></script>
+    <script src="/static/js/plugins.js"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

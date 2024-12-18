@@ -1,0 +1,259 @@
+#%RAML 1.0
+title: Violation API Documentation
+baseUri: http://127.0.0.1:5000
+
+types:
+  Violation:
+    properties:
+      id_poursuite: string
+      business_id: string
+      date_violation: string
+      description: string
+      adresse: string
+      date_jugement: string
+      etablissement: string
+      montant: number
+      proprietaire: string
+      ville: string
+      statut: string
+      date_statut: string
+      categorie: string
+      nombre_violations: integer
+
+  Inspection:
+    properties:
+      etablissement: string
+      adresse: string
+      ville: string
+      date_visite: string
+      nom: string
+      prenom: string
+      description: string
+
+  Utilisateur:
+    properties:
+      nom: string
+      adresse: string
+      etablissements: string
+      mot_de_passe: string
+
+/:
+  get:
+    description: Obtenir la liste de violations
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "id_poursuite": "1"
+                  "business_id": "123"
+                  "date_violation": "2001-04-04"
+                  "description": "A fast food restaurant"
+                  "adresse": "123 Sesame Street"
+                  "date_jugement": "2001-05-05-
+                  "etablissement": "Mc Donald"
+                  "montant": "4000"
+                  "proprietaire": "Ronald Mc Donald"
+                  "ville": "New York"
+                  "statut": "Fermé"
+                  "date_statut": "2001-05-06"
+                  "categorie": "Restaurant"
+                },
+                {
+                  "id_poursuite": "2"
+                  "business_id": "456"
+                  "date_violation": "2003-04-04"
+                  "description": "A Fried Chicken restaurant"
+                  "adresse": "456 Kenturkey"
+                  "date_jugement": "2003-05-05-
+                  "etablissement": "KFC"
+                  "montant": "9000"
+                  "proprietaire": "Colonel Sanders"
+                  "ville": "Kenturkey"
+                  "statut": "Ouvert"
+                  "date_statut": "2003-05-06"
+                  "categorie": "Restaurant"
+                }
+              ]
+
+  post:
+    description: Rechercher des violations
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          formParameters:
+            search:
+              description: résultat de recherche
+              type: string
+
+/contrevenants:
+  get:
+    description: Obtenir les violations entre 2 dates
+    queryParameters:
+      du:
+        description: date de début
+        type: string
+      au:
+        description: date de fin
+        type: string
+    responses:
+      200:
+        body:
+          application/json:
+            type: Violation[]
+
+/infractions:
+  get:
+    description: Obtenir les violation trié par nombre d'infractions
+    responses:
+      200:
+        body:
+          application/json:
+            type: Violation[]
+
+/infractions-xml:
+  get:
+    description: Obtenir les violation trié par nombre d'infractions en format XML
+    responses:
+      200:
+        body:
+          application/xml:
+            example: |
+              <violations>
+                <violation>
+                  <business_id>123</business_id>
+                  <etablissement>Mc Donald</etablissement>
+                  <nb_violations>19</nb_violations>
+                </violation>
+                <violation>
+                  <business_id>456</business_id>
+                  <etablissement>KFC</etablissement>
+                  <nb_violations>11</nb_violations>
+                </violation>
+              </violations>
+
+/infractions-csv:
+  get:
+    description: Obtenir les violation trié par nombre d'infractions en format CSV
+    responses:
+      200:
+        body:
+          text/csv:
+            example: |
+              business_id,etablissement,nombre_violations
+              123,Example Restaurant,5
+              456,Another Restaurant,3
+
+/inspection:
+  post:
+    description: Créer une nouvelle inspection
+    body:
+      application/json:
+        type: Inspection
+    responses:
+      201:
+        body:
+          application/json:
+            type: Inspection
+
+  get:
+    description: Obtenir la liste d'inspections
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "etablissement": "Burger King",
+                  "adresse": "123 Royal road",
+                  "ville": "Lego City",
+                  "date_visite": "2022-04-14",
+                  "nom": "Crab",
+                  "prenom": "Mister",
+                  "description": "Threatening my sales"
+                }
+              ]
+
+/inspection/{id}:
+  delete:
+    description: Supprimer un identifiant pas son id
+    responses:
+      200:
+        body: {}
+      404:
+        description: erreur de suppression
+
+/utilisateur:
+  post:
+    description: Créer un nouvel utilisateur
+    body:
+      application/json:
+        type: Utilisateur
+    responses:
+      201:
+        body:
+          application/json:
+            type: Utilisateur
+
+  get:
+    description: Get all users
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+                {
+                  "nom": "John Doe",
+                  "adresse": "123 Main St",
+                  "etablissements": "Restaurant",
+                  "mot_de_passe": "password"
+                }
+              ]
+
+/plainte:
+  get:
+    description: Afficher le formulaire de plainte
+    responses:
+      200:
+        body:
+          text/html:
+            example: |
+              <!DOCTYPE html>
+              <html>
+                <head>
+                  <title>Complaint Form</title>
+                </head>
+                <body>
+                  <form action="/plainte" method="post">
+                    <!-- Form fields -->
+                  </form>
+                </body>
+              </html>
+
+    post:
+      description: Envoie de plainte
+      responses:
+        200:
+          body: {}
+
+/doc:
+  get:
+    description: Afficher la page de documentation
+    responses:
+      200:
+        body:
+          text/html:
+            example: |
+              <!DOCTYPE html>
+              <html>
+                <head>
+                  <title>API Documentation</title>
+                </head>
+                <body>
+                  <!-- Documentation content -->
+                </body>
+              </html>

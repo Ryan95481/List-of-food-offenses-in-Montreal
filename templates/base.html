@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog-Z Bootstrap 5.0 HTML Template</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/templatemo-style.css">
+<!--
+    
+TemplateMo 556 Catalog-Z
+
+https://templatemo.com/tm-556-catalog-z
+
+-->
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    <nav class="navbar navbar-expand-lg">    
+        <div class="container-fluid">
+            <i class="fas fa-user mr-2"></i>
+            <a href="/plainte" class="btn btn-primary">Faire une plainte</a> 
+            <a href="/authentification" class="btn btn-primary">Authentification</a>
+        </div>
+    </nav>
+
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="/static/img/hero.jpg">
+        <div class="d-flex">
+            <form class="tm-search-form">
+                <div class="d-flex">
+                    <input class="form-control tm-date-input" id="date_debut" type="date" name="date_debut" aria-label="Date_debut">
+                    <input class="form-control tm-date-input" id="date_fin" type="date" name="date_fin" aria-label="Date_fin">
+                    <button class="btn btn-outline-success tm-search-btn" id="search_date_btn" type="submit" name="search_date_btn" value="search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex">
+            <form class="tm-search-form" method="post" action="/">
+                <div class="d-flex">
+                    <input class="form-control tm-search-input" id="search" type="search" name="search" placeholder="Rechercher" aria-label="Search">
+                    <button class="btn btn-outline-success tm-search-btn" type="submit" name="menu_btn" value="search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        {% block content %}{% endblock %}
+    
+    <script src="/static/js/script-date.js"></script>
+    <script src="/static/js/script-plainte.js"></script>
+    <script src="/static/js/plugins.js"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

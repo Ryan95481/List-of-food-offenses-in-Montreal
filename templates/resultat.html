@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <h2 class="col-6 tm-text-primary">
+            Latest articles
+        </h2>
+    </div>
+
+    <div>
+        <table class="table table-striped table-light">
+            <thead>
+                <tr>
+                    <th>id_poursuite</th>
+                    <th>business_id</th>
+                    <th>date</th>
+                    <th>description</th>
+                    <th>adresse</th>
+                    <th>date_jugement</th>
+                    <th>etablissement</th>
+                    <th>montant</th>
+                    <th>proprietaire</th>
+                    <th>ville</th>
+                    <th>statut</th>
+                    <th>date_statut</th>
+                    <th>categorie</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for violation in Violation %}
+                <tr class="fs-9">   
+                    <td>{{ violation.id_poursuite }}</td>
+                    <td>{{ violation.business_id }}</td>
+                    <td>{{ violation.date_violation }}</td>
+                    <td>{{ violation.description }}</td>
+                    <td>{{ violation.adresse }}</td>
+                    <td>{{ violation.date_jugement }}</td>
+                    <td>{{ violation.etablissement }}</td>
+                    <td>{{ violation.montant }}</td>
+                    <td>{{ violation.proprietaire }}</td>
+                    <td>{{ violation.ville }}</td>
+                    <td>{{ violation.statut }}</td>
+                    <td>{{ violation.date_statut }}</td>
+                    <td>{{ violation.categorie }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+    <script src="/static/js/plugins.js"></script>
+    <script src="/static/js/script-date.js"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</main>
+{% endblock %}
