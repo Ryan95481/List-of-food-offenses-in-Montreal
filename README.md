@@ -1,4 +1,4 @@
-# INF-5170 Projet de session: Guide pour la correction
+# INF-5170 Projet de session: Guide d'utilisation
 
 ## 
 
